@@ -21,20 +21,19 @@ export default class ItemStatusFilter extends Component {
     updateFilter = (filter) => this.props.setFilter(filter);
 
     render() {
-        const btns = this.buttons.map((btn) => {
+        const btns = this.buttons.map(({ name, label }) => {
             const clazz =
-                this.props.filter === btn.label
+                this.props.filter === label
                     ? 'btn-info'
                     : 'btn-outline-secondary';
 
             return (
                 <button
-                    key={btn.label}
+                    key={label}
                     type="button"
                     className={`btn ${clazz}`}
-                    value={btn.label}
-                    onClick={(e) => this.updateFilter(e.currentTarget.value)}>
-                    {btn.name}
+                    onClick={(e) => this.updateFilter(name)}>
+                    {name}
                 </button>
             );
         });
